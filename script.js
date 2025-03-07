@@ -14,7 +14,6 @@ function add() {
         return;
     }
 
-    SList.scrollIntoView({behavior: "smooth", block: "end"});
     CLn ++;
     CL.textContent = `Listas criadas: (${CLn})`;
     ListB.classList.add("LisB");
@@ -39,11 +38,35 @@ function add() {
 </svg>`;
     btX.addEventListener('click', function() {
         CLn = Math.max(CLn -1, 0);
-        ListB.classList.add("EXA");
+        ListB.classList.add("fO");
         setTimeout(() => {
             CL.textContent = `Listas criadas: (${CLn})`;
             ListB.remove();
-        }, 340);
+        }, 300);
     });
+    SList.scrollIntoView({behavior: "smooth", block: "end"});
     txL.value = "";
+}
+
+let BL = document.getElementById("barLateral");
+
+function callBL() {
+    BL.classList.add("fI");
+    BL.style.display = "block";
+}
+
+function fBL() {
+    BL.classList.remove("fI")
+    BL.classList.add("fO");
+    setTimeout(() => {
+        BL.style.display = "none";
+    }, 280);
+}
+
+function atNv() {
+    window.location.href = "AtENv.html";
+}
+
+function Voltar() {
+    window.location.href = "index.html";
 }
