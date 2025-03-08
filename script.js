@@ -1,5 +1,6 @@
 let CLn = 0;
 let SList = document.getElementById("SList");
+let CXD = document.getElementById("BErro");
 
 function add() {
     let CL = document.getElementById("titleL");
@@ -9,7 +10,10 @@ function add() {
     let ListT = document.createElement("p");
     let btX = document.createElement("button")
     if (txL.value.trim() === "") {
-        alert("Digite algo para criar uma nova lista");
+        CXD.style.display = "block";
+        CXD.style.display = "flex";
+        CXD.style.alignItems = "center";
+        CXD.style.justifyContent = "center";
         txL.value = "";
         return;
     }
@@ -69,4 +73,8 @@ function atNv() {
 
 function Voltar() {
     window.location.href = "index.html";
+}
+
+function OK() {
+    CXD.style.display = "none";
 }
