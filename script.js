@@ -14,6 +14,7 @@ function add() {
         CXD.style.display = "flex";
         CXD.style.alignItems = "center";
         CXD.style.justifyContent = "center";
+        CXD.classList.add("fI");
         txL.value = "";
         return;
     }
@@ -76,5 +77,9 @@ function Voltar() {
 }
 
 function OK() {
-    CXD.style.display = "none";
+    CXD.classList.remove("fI");
+    CXD.classList.add("fO");
+    setTimeout(() => {
+        CXD.style.display = "none";
+    }, 280);
 }

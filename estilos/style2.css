@@ -30,7 +30,7 @@ body{
     align-items: center;
     background: rgba(100, 100, 100, 0.2);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(94, 94, 94);
 }
 
 #btV{
@@ -66,7 +66,7 @@ body{
     width: 90%;
     margin-top: 20px;
     border-radius: 10px;
-    border: 2px solid rgb(86, 85, 85);
+    border: 1px solid rgb(86, 85, 85);
     background-color:rgb(50, 50, 50);
     padding: 10px;
     display: flex;
