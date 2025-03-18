@@ -215,6 +215,7 @@ body{
     color: lightgray;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
+    margin-left: 20px;
 }
 
 #barAddL{
@@ -336,7 +337,7 @@ body{
     }
 
     #barLateral{
-        width: 60%;
+        width: 70%;
     }
 
     .btsBarL{

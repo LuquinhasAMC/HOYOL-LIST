@@ -1,14 +1,12 @@
 let CLn = 0;
 let SList = document.getElementById("SList");
 let CXD = document.getElementById("BErro");
+let containerP = document.getElementById("barL");
+let CL = document.getElementById("titleL");
+let txL = document.getElementById("txAddL");
+let LV = document.getElementById("barL");
 
 function add() {
-    let CL = document.getElementById("titleL");
-    let txL = document.getElementById("txAddL");
-    let LV = document.getElementById("barL");
-    let ListB = document.createElement("div");
-    let ListT = document.createElement("p");
-    let btX = document.createElement("button")
     if (txL.value.trim() === "") {
         CXD.style.display = "block";
         CXD.style.display = "flex";
@@ -19,16 +17,14 @@ function add() {
         return;
     }
 
+    let ListB = document.createElement("div");
+
     CLn ++;
     CL.textContent = `Listas criadas: (${CLn})`;
     ListB.classList.add("LisB");
-    ListT.classList.add("LisT");
-    btX.classList.add("btX");
     LV.appendChild(ListB);
-    ListB.appendChild(ListT);
-    ListB.appendChild(btX);
-    ListT.textContent = txL.value;
-    btX.innerHTML = `<svg class="btsIcon" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    ListB.innerHTML = `<p class="LisT">${txL.value}</p>
+    <button class="btX" onclick="remover(this)"><svg class="btsIcon" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     
     <title>icon/18/icon-delete</title>
     <desc>Created with Sketch.</desc>
@@ -40,17 +36,28 @@ function add() {
 
 </path>
     </g>
-</svg>`;
-    btX.addEventListener('click', function() {
-        CLn = Math.max(CLn -1, 0);
-        ListB.classList.add("fO");
-        setTimeout(() => {
-            CL.textContent = `Listas criadas: (${CLn})`;
-            ListB.remove();
-        }, 300);
-    });
+</svg></button>`;
+
+    localStorage.setItem("elementos", JSON.stringify(containerP.innerHTML));
+    containerP.innerHTML = JSON.parse(localStorage.getItem("elementos"));
+    localStorage.setItem("ListC", CLn);
+    CLn = localStorage.getItem("ListC");
+
     SList.scrollIntoView({behavior: "smooth", block: "end"});
     txL.value = "";
+
+}
+
+function remover(botao) {
+    let ListB = botao.parentElement;
+    CLn = Math.max(CLn -1, 0);
+    ListB.classList.add("fO");
+    setTimeout(() => {
+        CL.textContent = `Listas criadas: (${CLn})`;
+        localStorage.setItem("ListC", CLn);
+        ListB.remove();
+        localStorage.setItem("elementos", JSON.stringify(containerP.innerHTML));
+    }, 300);
 }
 
 let BL = document.getElementById("barLateral");
@@ -82,4 +89,10 @@ function OK() {
     setTimeout(() => {
         CXD.style.display = "none";
     }, 280);
+}
+
+window.onload = function() {
+    containerP.innerHTML = JSON.parse(localStorage.getItem("elementos")) || [];
+    CLn = localStorage.getItem("ListC");
+    CL.textContent = `Listas criadas: (${CLn})`
 }
