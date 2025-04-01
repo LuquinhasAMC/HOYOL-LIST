@@ -93,6 +93,9 @@ function OK() {
 
 window.onload = function() {
     containerP.innerHTML = JSON.parse(localStorage.getItem("elementos")) || [];
+    if (CLn === null) {
+        CLn = 0
+    }
     CLn = localStorage.getItem("ListC");
     CL.textContent = `Listas criadas: (${CLn})`
 }

@@ -1,16 +1,23 @@
 *{
     padding: 0%;
     margin: 0%;
+    box-sizing: border-box;
+    outline: none;
 }
 
 body{
-    background-color: rgb(20, 19, 19);
+    background-color: rgb(0, 0, 0);
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     display: flex;   
     flex-direction: column; 
     align-items: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
 
 .icons{
@@ -28,16 +35,16 @@ body{
     padding: 10px;
     display: flex;
     align-items: center;
-    background: rgba(100, 100, 100, 0.2);
+    background: rgba(0, 0, 0, 0.486);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgb(94, 94, 94);
+    border-bottom: 1px solid rgb(49, 52, 59);
 }
 
 #btV{
     box-sizing: border-box;
     background-color: transparent;
     color: white;
-    border: 1px solid white;
+    border: 1px solid transparent;
     border-radius: 10px;
     padding: 5px;
     width: 40px;
@@ -51,23 +58,22 @@ body{
 }
 
 #btV:hover{
-    color: rgb(50, 50, 50);
+    color: rgb(0, 0, 0);
     background-color: white;
 }
 
 #tP{
-    font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 26px;
 }
 
 .AtB{
-    box-sizing: border-box;
     width: 90%;
     margin-top: 20px;
+    margin-bottom: 10px;
     border-radius: 10px;
-    border: 1px solid rgb(86, 85, 85);
-    background-color:rgb(50, 50, 50);
+    border: 2px solid rgb(49, 52, 59);
+    background-color:rgb(0, 0, 0);
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -77,7 +83,6 @@ body{
 }
 
 .AtT{
-    font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 20px;
     width: 100%;
@@ -86,7 +91,6 @@ body{
 
 .AtP{
     width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
-    color: darkgray;
+    color: rgb(79, 82, 90);
 }
