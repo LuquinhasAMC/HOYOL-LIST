@@ -5,6 +5,49 @@ let containerP = document.getElementById("barL");
 let CL = document.getElementById("titleL");
 let txL = document.getElementById("txAddL");
 let LV = document.getElementById("barL");
+let listaContent = [];
+const iconLixeira = `<svg class="btsIcon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 109.484 122.88" enable-background="new 0 0 109.484 122.88" xml:space="preserve"><g><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.347,9.633h38.297V3.76c0-2.068,1.689-3.76,3.76-3.76h21.144 c2.07,0,3.76,1.691,3.76,3.76v5.874h37.83c1.293,0,2.347,1.057,2.347,2.349v11.514H0V11.982C0,10.69,1.055,9.633,2.347,9.633 L2.347,9.633z M8.69,29.605h92.921c1.937,0,3.696,1.599,3.521,3.524l-7.864,86.229c-0.174,1.926-1.59,3.521-3.523,3.521h-77.3 c-1.934,0-3.352-1.592-3.524-3.521L5.166,33.129C4.994,31.197,6.751,29.605,8.69,29.605L8.69,29.605z M69.077,42.998h9.866v65.314 h-9.866V42.998L69.077,42.998z M30.072,42.998h9.867v65.314h-9.867V42.998L30.072,42.998z M49.572,42.998h9.869v65.314h-9.869 V42.998L49.572,42.998z"/></g></svg>`
+
+if (localStorage.getItem("listas")) {
+    listaContent = JSON.parse(localStorage.getItem("listas"));
+}
+
+function atualizarLista() {
+    containerP.innerHTML ="";
+
+    listaContent.forEach((item, index) => {
+        const listaContainer = document.createElement("div");
+        const listaText = document.createElement("p");
+        const btExcluir = document.createElement("button");
+
+        containerP.appendChild(listaContainer);
+        listaContainer.appendChild(listaText);
+        listaContainer.appendChild(btExcluir);
+
+        listaContainer.classList.add("LisB");
+        listaText.classList.add("LisT");
+        btExcluir.classList.add("btX");
+        btExcluir.innerHTML = iconLixeira;
+
+        btExcluir.addEventListener("click", () => excluirLista(index));
+
+        listaText.textContent = item.texto;
+    })
+}
+
+function excluirLista(index) {
+    listaContent.splice(index, 1);
+    localStorage.setItem("listas", JSON.stringify(listaContent));
+
+    CLn -= 1;
+    if (CLn <= 0) {
+        CLn = 0;
+    }
+    localStorage.setItem('quantia', CLn);
+    CL.innerHTML = `Listas criadas: (${CLn})`;
+
+    atualizarLista();
+}
 
 function add() {
     if (txL.value.trim() === "") {
@@ -17,48 +60,23 @@ function add() {
         return;
     }
 
-    let ListB = document.createElement("div");
+    CLn += 1;
+    localStorage.setItem('quantia', CLn);
+    CL.innerHTML = `Listas criadas: (${CLn})`;
 
-    CLn ++;
-    CL.textContent = `Listas criadas: (${CLn})`;
-    ListB.classList.add("LisB");
-    LV.appendChild(ListB);
-    ListB.innerHTML = `<p class="LisT">${txL.value}</p>
-    <button class="btX" onclick="remover(this)"><svg class="btsIcon" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    
-    <title>icon/18/icon-delete</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
+    listaContent.unshift({
+        texto: txL.value
+    });
 
-</defs>
-    <g id="out" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path fill="currentColor" d="M4.91666667,14.8888889 C4.91666667,15.3571429 5.60416667,16 6.0625,16 L12.9375,16 C13.3958333,16 14.0833333,15.3571429 14.0833333,14.8888889 L14.0833333,6 L4.91666667,6 L4.91666667,14.8888889 L4.91666667,14.8888889 L4.91666667,14.8888889 Z M15,3.46500003 L12.5555556,3.46500003 L11.3333333,2 L7.66666667,2 L6.44444444,3.46500003 L4,3.46500003 L4,4.93000007 L15,4.93000007 L15,3.46500003 L15,3.46500003 L15,3.46500003 Z" id="path" fill="#000000" sketch:type="MSShapeGroup">
-
-</path>
-    </g>
-</svg></button>`;
-
-    localStorage.setItem("elementos", JSON.stringify(containerP.innerHTML));
-    containerP.innerHTML = JSON.parse(localStorage.getItem("elementos"));
-    localStorage.setItem("ListC", CLn);
-    CLn = localStorage.getItem("ListC");
+    localStorage.setItem("listas", JSON.stringify(listaContent));
+    atualizarLista();
 
     SList.scrollIntoView({behavior: "smooth", block: "end"});
     txL.value = "";
 
 }
 
-function remover(botao) {
-    let ListB = botao.parentElement;
-    CLn = Math.max(CLn -1, 0);
-    ListB.classList.add("fO");
-    setTimeout(() => {
-        CL.textContent = `Listas criadas: (${CLn})`;
-        localStorage.setItem("ListC", CLn);
-        ListB.remove();
-        localStorage.setItem("elementos", JSON.stringify(containerP.innerHTML));
-    }, 300);
-}
+
 
 let BL = document.getElementById("barLateral");
 
@@ -91,11 +109,5 @@ function OK() {
     }, 280);
 }
 
-window.onload = function() {
-    containerP.innerHTML = JSON.parse(localStorage.getItem("elementos")) || [];
-    if (CLn === null) {
-        CLn = 0
-    }
-    CLn = localStorage.getItem("ListC");
-    CL.textContent = `Listas criadas: (${CLn})`
-}
+CL.innerHTML = `Listas criadas: (${CLn})`;
+atualizarLista();
