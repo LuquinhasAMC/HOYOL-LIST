@@ -109,5 +109,6 @@ function OK() {
     }, 280);
 }
 
+CLn = localStorage.getItem("quantia");
 CL.innerHTML = `Listas criadas: (${CLn})`;
 atualizarLista();
