@@ -4,60 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HOYOL-LIST</title>
-    <link rel="stylesheet" href="estilos/style.css">
-    <script defer src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster&family=Oswald:wght@200..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sigmar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <title>HOYOL-LIST</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <script defer src="script.js"></script>
 </head>
-<body>
-    <div id="BErro">
-        <div id="BD">
-            <h3 id="tE">Você deve escrever algo para criar uma lista</h3>
-            <button id="btOk" onclick="OK()">Ok</button>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+    <mdui-top-app-bar variant="center-aligned" id="mainTopBar">
+        <mdui-dropdown>
+            <mdui-button-icon slot="trigger">
+                <mdui-icon>menu</mdui-icon>
+            </mdui-button-icon>
+            <mdui-menu>
+                <mdui-menu-item class="itemMenu-withIcon">
+                    <div>
+                        <mdui-icon>settings</mdui-icon>
+                        <span>
+                            Configurações
+                        </span>
+                    </div>
+                </mdui-menu-item>
+                <mdui-menu-item class="itemMenu-withIcon">
+                    <div>
+                        <mdui-icon>article</mdui-icon>
+                        <span>
+                            Novidades da versão
+                        </span>
+                    </div>
+                </mdui-menu-item>
+            </mdui-menu>
+        </mdui-dropdown>
+
+        <mdui-top-app-bar-title>HOYOL-LIST</mdui-top-app-bar-title>
+    </mdui-top-app-bar>
+
+    <div id="mainContainerLayout">
+        <mdui-navigation-rail id="navPrincipal" value="all-lists" divider contained alignment="center" style="padding: 12px; z-index: 0;">
+            <mdui-fab icon="add" slot="top"></mdui-fab>
+            <mdui-navigation-rail-item icon="view_list" value="all-lists">Todas</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="list_alt" value="c-lists">Compostas</mdui-navigation-rail-item>
+        </mdui-navigation-rail>
+
+        <div id="mainContainerContentVewer">
+            <div id="topBar-vewerContent">
+                <mdui-tabs  value="all-lists">
+                    <mdui-tab value="all-lists">Todas</mdui-tab>
+                    <mdui-tab value="lists-completed">Completas</mdui-tab>
+                    <mdui-tab  value="lists-noCompleted">Pendentes</mdui-tab>
+                </mdui-tabs>
+            </div>
+            <div id="vewerContent">
+                <div id="noContentVewer">
+                    <h1>Sem listas aqui</h1>
+                    <h4>Não há listas disponíveis para serem visualizadas.</h4>
+                </div>
+            </div>
+
+            <mdui-navigation-bar divider value="all-lists" id="navPrincipalBottom" style="display: none;">
+                <div id="fabAddBottom-container">
+                    <mdui-fab icon="add" slot=""></mdui-fab>
+                </div>
+                <mdui-navigation-bar-item icon="view_list" value="all-lists">Todas</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="list_alt" value="c-lists">Compostas</mdui-navigation-bar-item>
+            </mdui-navigation-bar>
         </div>
-    </div>
-    <div id="barLateral">
-        <h1 id="tBarL">
-            <button id="btFBL" onclick="fBL()">
-                <svg class="icons" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="currentColor" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/>
-                    <path fill="currentColor" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/>
-                </svg>
-            </button>
-            Menu
-        </h1>
-        <button class="btsBarL" onclick="atNv()">
-            Atualizações e Novidades
-        </button>
-        <p id="pVe">v1.4 Beta</p>
-    </div>
-    
-    <div id="barTop">
-        <h1 id="titleS">HOYOL-LIST (Beta)</h1>
-        <button id="btM" onclick="callBL()">
-            <svg class="icons" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="Menu / Menu_Alt_01">
-                <path fill="currentColor" d="M12 17H19M5 12H19M5 7H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-            </svg>
-        </button>
-    </div>
-    <section id="SList">
-        <h3 id="titleL">Listas criadas: (0)</h3>
-        <div id="barL">
-        </div>
-    </section>
-    <div id="barAddL">
-        <input type="text" id="txAddL">
-        <button id="btAddL" onclick="add()">
-            <svg class="icons" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="Edit / Add_Plus">
-                    <path fill="currentColor" id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-            </svg>
-        </button>
     </div>
 </body>
 </html>
