@@ -36,6 +36,23 @@
         </div>
     </mdui-dialog>
 
+    <mdui-dialog id="newsSecreen" class="dialogType-screen">
+        <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
+            <mdui-button-icon mdui-dialog-close>
+                <mdui-icon onclick="fecharDialogBox('newsSecreen')"><mdui-icon>close</mdui-icon>
+            </mdui-button-icon>
+            <mdui-top-app-bar-title>Novidades da versão</mdui-top-app-bar-title>
+        </mdui-top-app-bar>
+
+        <div class="dialogContainerContente">
+            <mdui-card variant="outlined" class="cardOption-newV">
+                <h3>Novo HOYOL-LIST</h3>
+                <mdui-divider style="margin: 5px 0px;"></mdui-divider>
+                <p>O HOYOL-LIST está sendo atualizado para uma nova versão mais elaborada, trazendo uma nova interface e recursos.</p>
+            </mdui-card>
+        </div>
+    </mdui-dialog>
+
     <!-- Topo do app -->
     <mdui-top-app-bar variant="center-aligned" id="mainTopBar">
         <mdui-dropdown>
@@ -46,17 +63,13 @@
                 <mdui-menu-item class="itemMenu-withIcon" onclick="abrirDialogBox('configSecreen')">
                     <div>
                         <mdui-icon>settings</mdui-icon>
-                        <span>
-                            Configurações
-                        </span>
+                        <span>Configurações</span>
                     </div>
                 </mdui-menu-item>
-                <mdui-menu-item class="itemMenu-withIcon">
+                <mdui-menu-item class="itemMenu-withIcon" onclick="abrirDialogBox('newsSecreen')">
                     <div>
                         <mdui-icon>article</mdui-icon>
-                        <span>
-                            Novidades da versão
-                        </span>
+                        <span>Novidades da versão</span>
                     </div>
                 </mdui-menu-item>
             </mdui-menu>

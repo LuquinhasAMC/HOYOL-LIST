@@ -50,7 +50,7 @@ mdui-icon {
 }
 
 .dialogContainerContente {
-    width: 350px;
+    width: 450px;
     height: 200px;
     overflow: scroll;
     display: flex;
@@ -59,7 +59,7 @@ mdui-icon {
 }
 
 /* Config class */
-.cardOption-config {
+.cardOption-config, .cardOption-newV {
     width: 100%;
     display: flex;
     flex-direction: column;

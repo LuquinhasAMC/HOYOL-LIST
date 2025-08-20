@@ -2,7 +2,7 @@ const navbar = document.getElementById("navPrincipal");
 const navBarBottom = document.getElementById("navPrincipalBottom");
 const mainContainerLayout = document.getElementById("mainContainerLayout");
 const fabAddBottom = document.getElementById("fabAdd-bottom");
-const divDialogContent = document.querySelectorAll(".mdui-dialog-content");
+const divDialogContent = document.querySelectorAll(".dialogContainerContente");
 
 let configArray = [{
   "darkMode": false
@@ -50,7 +50,7 @@ function ajustarLayout() {
     navBarBottom.style.display = "none";
     mainContainerLayout.style.paddingLeft = navbar.offsetWidth + "px";
     divDialogContent.forEach((content) => {
-      content.style.width = "350px";
+      content.style.width = "450px";
     });
     mainContainerLayout.style.paddingBottom = "0px";
     document.body.style.paddingBottom = "0px";
