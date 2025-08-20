@@ -3,7 +3,37 @@ const navBarBottom = document.getElementById("navPrincipalBottom");
 const mainContainerLayout = document.getElementById("mainContainerLayout");
 const fabAddBottom = document.getElementById("fabAdd-bottom");
 
-function ajustarNavbar() {
+let configArray = [{
+  "darkMode": false
+}]
+
+if (localStorage.getItem("configArray")) {
+  configArray = JSON.parse(localStorage.getItem("configArray"));
+}
+
+function preConfigInterface() {
+  // DarkMode config
+  const switchDarkMode = document.getElementById("SW-darkMode");
+  switchDarkMode.checked = configArray[0].darkMode;
+  darkMode(configArray[0].darkMode);
+}
+
+function atualizarConfigArray() {
+  localStorage.setItem("configArray", JSON.stringify(configArray));
+}
+
+function darkMode(status) {
+  if (status) {
+    document.body.classList.add("mdui-theme-dark");
+    configArray[0].darkMode = status;
+  } else {
+    document.body.classList.remove("mdui-theme-dark");
+    configArray[0].darkMode = status;
+  }
+  atualizarConfigArray();
+}
+
+function ajustarLayout() {
   if (window.innerWidth <= 780) {
     navbar.style.display = "none";
     navBarBottom.style.display = "flex";
@@ -20,6 +50,17 @@ function ajustarNavbar() {
   }
 }
 
-ajustarNavbar();
+function abrirDialogBox(IDdialog) {
+  const dialog = document.getElementById(IDdialog);
+  dialog.open = true;
+}
 
-window.addEventListener("resize", ajustarNavbar);
+function fecharDialogBox(IDdialog) {
+  const dialog = document.getElementById(IDdialog);
+  dialog.open = false;
+}
+
+preConfigInterface();
+ajustarLayout();
+
+window.addEventListener("resize", ajustarLayout);

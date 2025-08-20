@@ -15,13 +15,34 @@
     <script defer src="script.js"></script>
 </head>
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+    <!-- Caixas de diálogo -->
+    <mdui-dialog id="configSecreen" class="dialogType-screen">
+        <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
+            <mdui-button-icon mdui-dialog-close>
+                <mdui-icon onclick="fecharDialogBox('configSecreen')"><mdui-icon>close</mdui-icon>
+            </mdui-button-icon>
+            <mdui-top-app-bar-title>Configurações</mdui-top-app-bar-title>
+        </mdui-top-app-bar>
+
+        <div class="dialogContainerContente">
+            <mdui-card variant="outlined" class="cardOption-config">
+                <div class="titleOption-config">
+                    <h3>Modo noturno</h3>
+                    <mdui-switch id="SW-darkMode" onchange="darkMode(this.checked)"></mdui-switch>
+                </div>
+                <span class="descriptionOption-config">Se ativado, o site ficará com a interface no modo escuro.</span>
+            </mdui-card>
+        </div>
+    </mdui-dialog>
+
+    <!-- Topo do app -->
     <mdui-top-app-bar variant="center-aligned" id="mainTopBar">
         <mdui-dropdown>
             <mdui-button-icon slot="trigger">
                 <mdui-icon>menu</mdui-icon>
             </mdui-button-icon>
             <mdui-menu>
-                <mdui-menu-item class="itemMenu-withIcon">
+                <mdui-menu-item class="itemMenu-withIcon" onclick="abrirDialogBox('configSecreen')">
                     <div>
                         <mdui-icon>settings</mdui-icon>
                         <span>
@@ -45,10 +66,26 @@
 
     <div id="mainContainerLayout">
         <mdui-navigation-rail id="navPrincipal" value="all-lists" divider contained alignment="center" style="padding: 12px; z-index: 0;">
-            <mdui-fab icon="add" slot="top"></mdui-fab>
-            <mdui-navigation-rail-item icon="view_list" value="all-lists">Todas</mdui-navigation-rail-item>
+            <mdui-dropdown slot="top">
+                <mdui-fab icon="add" slot="trigger"></mdui-fab>
+                <mdui-menu>
+                    <mdui-menu-item class="itemMenu-withIcon">
+                        <div>
+                            <mdui-icon>format_list_bulleted</mdui-icon>
+                            <span>Criar Lista Simples</span>
+                        </div>
+                    </mdui-menu-item>
+                    <mdui-menu-item class="itemMenu-withIcon">
+                        <div>
+                            <mdui-icon>list_alt</mdui-icon>
+                            <span>Criar Lista Composta</span>
+                        </div>
+                    </mdui-menu-item>
+                </mdui-menu>
+            </mdui-dropdown>
+            <mdui-navigation-rail-item icon="view_list" value="all-lists">Ambas</mdui-navigation-rail-item>
             <mdui-navigation-rail-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-rail-item>
-            <mdui-navigation-rail-item icon="list_alt" value="c-lists">Compostas</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="list_alt" value="c-lists">Composta</mdui-navigation-rail-item>
         </mdui-navigation-rail>
 
         <div id="mainContainerContentVewer">
@@ -67,10 +104,27 @@
             </div>
 
             <mdui-navigation-bar divider value="all-lists" id="navPrincipalBottom" style="display: none;">
-                <mdui-fab id="fabAdd-bottom" icon="add" slot=""></mdui-fab>
-                <mdui-navigation-bar-item icon="view_list" value="all-lists">Todas</mdui-navigation-bar-item>
+                <mdui-dropdown>
+                    <mdui-fab id="fabAdd-bottom" icon="add" slot="trigger"></mdui-fab>
+                    <mdui-menu>
+                        <mdui-menu-item class="itemMenu-withIcon">
+                            <div>
+                                <mdui-icon>format_list_bulleted</mdui-icon>
+                                <span>Criar Lista Simples</span>
+                            </div>
+                        </mdui-menu-item>
+                        <mdui-menu-item class="itemMenu-withIcon">
+                            <div>
+                                <mdui-icon>list_alt</mdui-icon>
+                                <span>Criar Lista Composta</span>
+                            </div>
+                        </mdui-menu-item>
+                    </mdui-menu>
+                </mdui-dropdown>
+
+                <mdui-navigation-bar-item icon="view_list" value="all-lists">Ambas</mdui-navigation-bar-item>
                 <mdui-navigation-bar-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-bar-item>
-                <mdui-navigation-bar-item icon="list_alt" value="c-lists">Compostas</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="list_alt" value="c-lists">Composta</mdui-navigation-bar-item>
             </mdui-navigation-bar>
         </div>
     </div>
