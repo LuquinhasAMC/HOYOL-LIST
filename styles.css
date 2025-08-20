@@ -112,10 +112,9 @@ mdui-icon {
     align-items: center;
     justify-content: center;
     padding: 5px;
-    color: var(--mdui-theme-text-primary);
 }
 
-#noContentVewer h1, h4 {
+#noContentVewer h1, p {
     text-align: center;
 }
 

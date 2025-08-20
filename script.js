@@ -35,7 +35,7 @@ function darkMode(status) {
 }
 
 function ajustarLayout() {
-  if (window.innerWidth <= 780) {
+  if (window.innerWidth <= 780 || window.innerHeight <= 384) {
     navbar.style.display = "none";
     navBarBottom.style.display = "flex";
     mainContainerLayout.style.paddingLeft = "0px";
