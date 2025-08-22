@@ -16,6 +16,8 @@
 </head>
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
     <!-- Caixas de diálogo -->
+
+    <!-- Tela de configuração -->
     <mdui-dialog id="configSecreen" class="dialogType-screen">
         <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
             <mdui-button-icon mdui-dialog-close>
@@ -36,6 +38,7 @@
         </div>
     </mdui-dialog>
 
+    <!-- Tela de novidades da versão -->
     <mdui-dialog id="newsSecreen" class="dialogType-screen">
         <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
             <mdui-button-icon mdui-dialog-close>
@@ -51,6 +54,24 @@
                 <p>O HOYOL-LIST está sendo atualizado para uma nova versão mais elaborada, trazendo uma nova interface e recursos.</p>
             </mdui-card>
         </div>
+    </mdui-dialog>
+
+    <!-- Tela de criação de lista simples -->
+    <mdui-dialog id="createLSSecreen" class="dialogType-screen">
+        <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
+            <mdui-button-icon mdui-dialog-close>
+                <mdui-icon onclick="fecharDialogBox('createLSSecreen')"><mdui-icon>close</mdui-icon>
+            </mdui-button-icon>
+            <mdui-top-app-bar-title>Criar lista simples</mdui-top-app-bar-title>
+        </mdui-top-app-bar>
+
+        <div class="dialogContainerContente">
+            <h6 class="microTitle">Preencha os campos</h6>
+            <mdui-text-field label="Conteúdo da lista" variant="outlined" style="margin-bottom: 10px;"></mdui-text-field>
+            <mdui-text-field label="Descrição" variant="outlined"></mdui-text-field>
+        </div>
+
+        <mdui-button slot="action">Comcluir</mdui-button>
     </mdui-dialog>
 
     <!-- Topo do app -->
@@ -83,7 +104,7 @@
             <mdui-dropdown slot="top">
                 <mdui-fab icon="add" slot="trigger"></mdui-fab>
                 <mdui-menu>
-                    <mdui-menu-item class="itemMenu-withIcon">
+                    <mdui-menu-item class="itemMenu-withIcon" onclick="abrirDialogBox('createLSSecreen')">
                         <div>
                             <mdui-icon>format_list_bulleted</mdui-icon>
                             <span>Criar Lista Simples</span>
@@ -115,13 +136,16 @@
                     <h1>Sem listas aqui</h1>
                     <p>Não há listas disponíveis para serem visualizadas.</p>
                 </div>
+
+                <!-- Container de exibição das listas -->
+                <div id="contentVewerLists"></div>
             </div>
 
             <mdui-navigation-bar divider value="all-lists" id="navPrincipalBottom" style="display: none;">
                 <mdui-dropdown>
                     <mdui-fab id="fabAdd-bottom" icon="add" slot="trigger"></mdui-fab>
                     <mdui-menu>
-                        <mdui-menu-item class="itemMenu-withIcon">
+                        <mdui-menu-item class="itemMenu-withIcon" onclick="abrirDialogBox('createLSSecreen')">
                             <div>
                                 <mdui-icon>format_list_bulleted</mdui-icon>
                                 <span>Criar Lista Simples</span>
