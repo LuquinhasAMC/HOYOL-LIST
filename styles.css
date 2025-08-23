@@ -140,3 +140,44 @@ mdui-icon {
     right: 16px;
     z-index: 1;
 }
+
+/* Class lists components */
+.listItem-card {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.listItem-card-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.listItem-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.listItem-title {
+    font-size: 16px;
+    width: 100%;
+    color: var(--mdui-theme-text-primary);
+    text-align: left;
+}
+
+.listItem-description {
+    font-size: 10px;
+    width: 100%;
+    color: var(--mdui-theme-text-secondary);
+    text-align: left;
+}
+
+@media (max-width: 780px) {
+    .listItem-card {
+        width: 100%;
+    }
+}

@@ -56,6 +56,14 @@
         </div>
     </mdui-dialog>
 
+    <mdui-dialog id="excluirLista-dialog">
+        <h4 slot="headline">Deseja excluir está lista?</h4>
+        <p slot="description">Se fizer isso a ação não poderá ser desfeita.</p>
+
+        <mdui-button slot="action" variant="text" onclick="cancelarExcluirLista()">Cancelar</mdui-button>
+        <mdui-button slot="action" onclick="confirmarExcluirLista()">Confirmar e excluir</mdui-button>
+    </mdui-dialog>
+
     <!-- Tela de criação de lista simples -->
     <mdui-dialog id="createLSSecreen" class="dialogType-screen">
         <mdui-top-app-bar slot="header" variant="center-aligned" style="padding: 10px;">
@@ -67,11 +75,11 @@
 
         <div class="dialogContainerContente">
             <h6 class="microTitle">Preencha os campos</h6>
-            <mdui-text-field label="Conteúdo da lista" variant="outlined" style="margin-bottom: 10px;"></mdui-text-field>
-            <mdui-text-field label="Descrição" variant="outlined"></mdui-text-field>
+            <mdui-text-field id="inputTitleLS" label="Conteúdo da lista" variant="outlined" style="margin-bottom: 10px;"></mdui-text-field>
+            <mdui-text-field id="inputDescriptionLS" label="Descrição" variant="outlined"></mdui-text-field>
         </div>
 
-        <mdui-button slot="action">Comcluir</mdui-button>
+        <mdui-button slot="action" onclick="createLS()">Comcluir</mdui-button>
     </mdui-dialog>
 
     <!-- Topo do app -->
@@ -100,7 +108,7 @@
     </mdui-top-app-bar>
 
     <div id="mainContainerLayout">
-        <mdui-navigation-rail id="navPrincipal" value="all-lists" divider contained alignment="center" style="padding: 12px; z-index: 0;">
+        <mdui-navigation-rail id="navPrincipal" value="all" divider contained alignment="center" style="padding: 12px; z-index: 0;">
             <mdui-dropdown slot="top">
                 <mdui-fab icon="add" slot="trigger"></mdui-fab>
                 <mdui-menu>
@@ -118,17 +126,17 @@
                     </mdui-menu-item>
                 </mdui-menu>
             </mdui-dropdown>
-            <mdui-navigation-rail-item icon="view_list" value="all-lists">Ambas</mdui-navigation-rail-item>
-            <mdui-navigation-rail-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-rail-item>
-            <mdui-navigation-rail-item icon="list_alt" value="c-lists">Composta</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="view_list" value="all" onclick="navTypeList(this.value, arrayListItems)">Ambas</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="format_list_bulleted" value="LS" onclick="navTypeList(this.value, filterListLS)">Lista</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item icon="list_alt" value="LC" onclick="navTypeList(this.value, filterListLC)">Composta</mdui-navigation-rail-item>
         </mdui-navigation-rail>
 
         <div id="mainContainerContentVewer">
             <div id="topBar-vewerContent">
-                <mdui-tabs  value="all-lists">
-                    <mdui-tab value="all-lists">Todas</mdui-tab>
-                    <mdui-tab value="lists-completed">Completas</mdui-tab>
-                    <mdui-tab  value="lists-noCompleted">Pendentes</mdui-tab>
+                <mdui-tabs value="all-lists" id="navStatusList">
+                    <mdui-tab value="all-lists" onclick="statusListFilter(arrayListItems)">Todas</mdui-tab>
+                    <mdui-tab value="lists-completed" onclick="statusListFilter(filterListCompleted)">Completas</mdui-tab>
+                    <mdui-tab  value="lists-noCompleted" onclick="statusListFilter(filterListInProgress)">Pendentes</mdui-tab>
                 </mdui-tabs>
             </div>
             <div id="vewerContent">
@@ -141,7 +149,7 @@
                 <div id="contentVewerLists"></div>
             </div>
 
-            <mdui-navigation-bar divider value="all-lists" id="navPrincipalBottom" style="display: none;">
+            <mdui-navigation-bar divider value="all" id="navPrincipalBottom" style="display: none;">
                 <mdui-dropdown>
                     <mdui-fab id="fabAdd-bottom" icon="add" slot="trigger"></mdui-fab>
                     <mdui-menu>
@@ -160,9 +168,9 @@
                     </mdui-menu>
                 </mdui-dropdown>
 
-                <mdui-navigation-bar-item icon="view_list" value="all-lists">Ambas</mdui-navigation-bar-item>
-                <mdui-navigation-bar-item icon="format_list_bulleted" value="s-lists">Lista</mdui-navigation-bar-item>
-                <mdui-navigation-bar-item icon="list_alt" value="c-lists">Composta</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="view_list" value="all" onclick="navTypeList(this.value, arrayListItems)">Ambas</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="format_list_bulleted" value="LS" onclick="navTypeList(this.value, filterListLS)">Lista</mdui-navigation-bar-item>
+                <mdui-navigation-bar-item icon="list_alt" value="LC" onclick="navTypeList(this.value, filterListLC)">Composta</mdui-navigation-bar-item>
             </mdui-navigation-bar>
         </div>
     </div>
